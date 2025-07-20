@@ -53,12 +53,10 @@ func (h Headers) Set(key, value string) {
 	}
 }
 
-func (h Headers) Get(key string) string {
-	if value, contains := h[key]; contains {
-		return value
-	}
-
-	return ""
+func (h Headers) Get(key string) (string, bool) {
+	key = strings.ToLower(key)
+	v, ok := h[key]
+	return v, ok
 }
 
 func (h Headers) Override(key, value string) {
